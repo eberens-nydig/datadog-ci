@@ -3,8 +3,19 @@ import {Command} from 'clipanion'
 
 import {parseConfigFile, ProxyConfiguration} from '../../helpers/utils'
 import {apiConstructor} from './api'
-import {APIHelper, ConfigOverride, ExecutionRule, LocationsMapping, MainReporter, PollResult, Test} from './interfaces'
+import {
+  APIHelper,
+  ConfigOverride,
+  ExecutionRule,
+  LocationsMapping,
+  MainReporter,
+  PollResult,
+  Reporter,
+  Test,
+  TriggerConfig,
+} from './interfaces'
 import {DefaultReporter} from './reporters/default'
+import {JUnitReporter} from './reporters/junit'
 import {Tunnel} from './tunnel'
 import {getReporter, getSuites, getTestsToTrigger, hasTestSucceeded, runTests, waitForResults} from './utils'
 
@@ -24,13 +35,20 @@ export class RunTestCommand extends Command {
   }
   private configPath?: string
   private fileGlobs?: string[]
+  public jUnitReport?: string
   private publicIds: string[] = []
   private reporter?: MainReporter
+  public runName?: string
   private shouldOpenTunnel?: boolean
   private testSearchQuery?: string
 
   public async execute() {
-    const reporters = [new DefaultReporter(this)]
+    const reporters: Reporter[] = [new DefaultReporter(this)]
+
+    if (this.jUnitReport) {
+      reporters.push(new JUnitReporter(this))
+    }
+
     this.reporter = getReporter(reporters)
     const startTime = Date.now()
     this.config = await parseConfigFile(this.config, this.configPath)
@@ -233,3 +251,5 @@ RunTestCommand.addOption('publicIds', Command.Array('-p,--public-id'))
 RunTestCommand.addOption('testSearchQuery', Command.String('-s,--search'))
 RunTestCommand.addOption('shouldOpenTunnel', Command.Boolean('-t,--tunnel'))
 RunTestCommand.addOption('fileGlobs', Command.Array('-f,--files'))
+RunTestCommand.addOption('jUnitReport', Command.String('-j,--junitReport'))
+RunTestCommand.addOption('runName', Command.String('-n,--runName'))
