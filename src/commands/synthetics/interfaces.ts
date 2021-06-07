@@ -108,6 +108,7 @@ export interface Test {
   status: string
   stepCount: number
   subtype: string
+  suite?: string
   tags: string[]
   type: string
 }
@@ -227,6 +228,7 @@ export interface TemplateContext extends NodeJS.ProcessEnv {
 export interface TriggerConfig {
   config: ConfigOverride
   id: string
+  suite?: string
 }
 
 export enum ExecutionRule {
@@ -236,7 +238,10 @@ export enum ExecutionRule {
 }
 
 export interface Suite {
-  tests: TriggerConfig[]
+  name?: string
+  content: {
+    tests: TriggerConfig[]
+  }
 }
 
 export interface Summary {

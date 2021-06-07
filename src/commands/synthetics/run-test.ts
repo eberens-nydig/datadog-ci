@@ -36,7 +36,7 @@ export class RunTestCommand extends Command {
     this.config = await parseConfigFile(this.config, this.configPath)
 
     const api = this.getApiHelper()
-    const publicIdsFromCli = this.publicIds.map((id) => ({config: this.config.global, id}))
+    const publicIdsFromCli = this.publicIds.map((id) => ({suite: 'CLI Suite', config: this.config.global, id}))
     const testsToTrigger = publicIdsFromCli.length ? publicIdsFromCli : await this.getTestsList(api)
 
     if (!testsToTrigger.length) {
@@ -176,27 +176,32 @@ export class RunTestCommand extends Command {
     return `${host}/${apiPath}`
   }
 
-  private async getTestsList(api: APIHelper) {
+  private async getTestsList(api: APIHelper): Promise<TriggerConfig[]> {
     if (this.testSearchQuery) {
       const testSearchResults = await api.searchTests(this.testSearchQuery)
 
-      return testSearchResults.tests.map((test) => ({config: this.config.global, id: test.public_id}))
+      return testSearchResults.tests.map((test) => ({
+        config: this.config.global,
+        id: test.public_id,
+        suite: `Query: ${this.testSearchQuery}`,
+      }))
     }
 
     const listOfGlobs = this.fileGlobs || [this.config.files]
 
     const suites = (await Promise.all(listOfGlobs.map((glob: string) => getSuites(glob, this.reporter!))))
       .reduce((acc, val) => acc.concat(val), [])
-      .map((suite) => suite.tests)
-      .filter((suiteTests) => !!suiteTests)
+      .filter((suite) => !!suite.content.tests)
 
     const testsToTrigger = suites
+      .map((suite) => {
+        return suite.content.tests.map((test) => ({
+          suite: suite.name,
+          config: {...this.config!.global, ...test.config},
+          id: test.id,
+        }))
+      })
       .reduce((acc, suiteTests) => acc.concat(suiteTests), [])
-      .map((test) => ({
-        config: {...this.config!.global, ...test.config},
-        id: test.id,
-      }))
-
     return testsToTrigger
   }
 

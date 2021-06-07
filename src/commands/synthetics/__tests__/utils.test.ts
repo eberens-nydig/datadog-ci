@@ -29,8 +29,8 @@ describe('utils', () => {
     const GLOB = 'testGlob'
     const FILES = ['file1', 'file2']
     const FILES_CONTENT = {
-      file1: '{"content":"file1"}',
-      file2: '{"content":"file2"}',
+      file1: '{"tests":"file1"}',
+      file2: '{"tests":"file2"}',
     }
 
     ;(fs.readFile as any).mockImplementation((path: 'file1' | 'file2', opts: any, callback: any) =>
@@ -40,7 +40,9 @@ describe('utils', () => {
 
     test('should get suites', async () => {
       const suites = await utils.getSuites(GLOB, mockReporter)
-      expect(JSON.stringify(suites)).toBe(`[${FILES_CONTENT.file1},${FILES_CONTENT.file2}]`)
+      expect(JSON.stringify(suites)).toBe(
+        `[{"name":"file1","content":${FILES_CONTENT.file1}},{"name":"file2","content":${FILES_CONTENT.file2}}]`
+      )
     })
   })
 
@@ -111,9 +113,9 @@ describe('utils', () => {
 
     test('only existing tests are returned', async () => {
       const triggerConfigs = [
-        {config: {}, id: '123-456-789'},
-        {config: {}, id: '987-654-321'},
-        {config: {}, id: 'ski-ppe-d01'},
+        {suite: 'Suite 1', config: {}, id: '123-456-789'},
+        {suite: 'Suite 2', config: {}, id: '987-654-321'},
+        {suite: 'Suite 3', config: {}, id: 'ski-ppe-d01'},
       ]
       const {tests, overriddenTestsToTrigger, summary} = await utils.getTestsToTrigger(
         api,
@@ -388,6 +390,7 @@ describe('utils', () => {
       result_id: '0123456789',
     }
     const triggerConfig = {
+      suite: 'Suite 1',
       config: {},
       id: publicId,
     }
@@ -437,6 +440,7 @@ describe('utils', () => {
         },
       ]
       const testTriggerConfig = {
+        suite: 'Suite 1',
         config: {pollingTimeout: 0},
         id: publicId,
       }
