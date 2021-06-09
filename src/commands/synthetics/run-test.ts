@@ -243,6 +243,331 @@ export class RunTestCommand extends Command {
   }
 }
 
+/* {
+  "suite": "javascript/datadog/single-page-app/lib/search-panel/search-panel.synthetics.json",
+  "status": "live",
+  "public_id": "fgt-ki8-5st",
+  "tags": [
+    "env:ci",
+    "env:prod",
+    "team:designops"
+  ],
+  "locations": [
+    "aws:eu-central-1"
+  ],
+  "message": "",
+  "name": "[Cmd+K] Clicks and enters",
+  "monitor_id": 30577295,
+  "type": "browser",
+  "config": {
+    "variables": [],
+    "setCookie": "",
+    "request": {
+      "url": "https://app.datadoghq.com",
+      "headers": {},
+      "method": "GET"
+    },
+    "assertions": []
+  },
+  "options": {
+    "ci": {
+      "executionRule": "blocking"
+    },
+    "retry": {
+      "count": 0,
+      "interval": 300
+    },
+    "min_location_failed": 1,
+    "min_failure_duration": 0,
+    "noScreenshot": false,
+    "tick_every": 3600,
+    "forwardProxy": false,
+    "device_ids": [
+      "chrome.laptop_large"
+    ],
+    "monitor_options": {
+      "renotify_interval": 0
+    },
+    "ignoreServerCertificateError": false
+  }
+} */
+
+;[
+  {
+    config_override: {
+      public_id: 'acj-mif-h4p',
+      executionRule: 'non_blocking',
+      startUrl: 'https://app-aedcbe9f6948b970a1e3b90ce530c471.datadoghq.com/',
+    },
+    check_id: '891777',
+    timestamp: 1622814219790,
+    check_version: 12,
+    resultID: '5514243239262121697',
+    orgID: 2,
+    result: {
+      runType: 2,
+      artifactsBucketKey:
+        '2/e2e-tests/acj-mif-h4p/results/5514243239262121697/chrome.laptop_large/artifacts__1622814304876.json',
+      browserType: 'chrome',
+      eventType: 'finished',
+      errorMessage: 'Custom assertion returned a falsy value.',
+      browserVersion: '91.0.4472.77',
+      mainDC: 'us1.prod',
+      timeToInteractive: 2205.0999999940395,
+      errorCode: 'ASSERTION_FAILURE',
+      failure: {
+        message: 'Custom assertion returned a falsy value.',
+        code: 'ASSERTION_FAILURE',
+      },
+      device: {
+        name: 'Laptop Large',
+        height: 1100,
+        width: 1440,
+        userAgent:
+          'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
+        id: 'chrome.laptop_large',
+        isMobile: false,
+        browser: 'chrome',
+      },
+      stepDetails: [
+        {
+          browserErrors: [],
+          vitalsMetrics: [
+            {
+              url: 'https://app-aedcbe9f6948b970a1e3b90ce530c471.datadoghq.com/account/login?next=%2F',
+              lcp: 2241.599,
+              cls: 0.1,
+            },
+          ],
+          skipped: false,
+          description: 'Navigate to start URL',
+          warnings: [
+            {
+              message: 'None or multiple elements detected: .single-page-app_layout_trial-top-bar',
+              type: 'user_locator',
+            },
+          ],
+          url: 'about:blank',
+          value: 'https://app-aedcbe9f6948b970a1e3b90ce530c471.datadoghq.com/',
+          duration: 3001,
+          allowFailure: false,
+          screenshotBucketKey:
+            '2/e2e-tests/acj-mif-h4p/results/5514243239262121697/chrome.laptop_large/step-0__1622814304889.jpeg',
+          type: 'goToUrlAndMeasureTti',
+          stepId: -1,
+        },
+        {
+          subTestStepDetails: [
+            {
+              browserErrors: [],
+              vitalsMetrics: [],
+              skipped: false,
+              publicId: 'cn7-qc3-dx4',
+              description: 'Type text on input #username',
+              url: 'https://app-aedcbe9f6948b970a1e3b90ce530c471.datadoghq.com/account/login?next=%2F',
+              value: 'nadir.kadem+infinitetrial@gmail.com',
+              duration: 1650,
+              allowFailure: false,
+              screenshotBucketKey:
+                '2/e2e-tests/acj-mif-h4p/results/5514243239262121697/chrome.laptop_large/step-1.0__1622814305386.jpeg',
+              type: 'typeText',
+              stepId: 2301407,
+            },
+            {
+              browserErrors: [],
+              vitalsMetrics: [],
+              skipped: false,
+              publicId: 'rci-hhn-td9',
+              description: 'Type text on input #password',
+              url: 'https://app-aedcbe9f6948b970a1e3b90ce530c471.datadoghq.com/account/login?next=%2F',
+              value: '{{ TRIAL_ORG_BROWSER_TEST_PASSWORD }}',
+              duration: 1346,
+              allowFailure: false,
+              screenshotBucketKey:
+                '2/e2e-tests/acj-mif-h4p/results/5514243239262121697/chrome.laptop_large/step-1.1__1622814305877.jpeg',
+              type: 'typeText',
+              stepId: 2301408,
+            },
+            {
+              browserErrors: [
+                {
+                  type: 'js',
+                  description: 'DD.ThirdPartyApps: intercom could not identify().',
+                  name: 'Console error',
+                },
+                {
+                  type: 'js',
+                  description:
+                    'React-Hot-Loader: misconfiguration detected, using production version in non-production environment.',
+                  name: 'Console error',
+                },
+                {
+                  type: 'js',
+                  description: 'React-Hot-Loader: Hot Module Replacement is not enabled.',
+                  name: 'Console error',
+                },
+              ],
+              vitalsMetrics: [
+                {
+                  url: 'https://app-aedcbe9f6948b970a1e3b90ce530c471.datadoghq.com/help/quick_start',
+                  lcp: 5049.4,
+                  cls: 0.026,
+                },
+              ],
+              skipped: false,
+              publicId: 'wfi-cxb-4hj',
+              description: 'Click on button "Log in"',
+              url: 'https://app-aedcbe9f6948b970a1e3b90ce530c471.datadoghq.com/account/login?next=%2F',
+              duration: 5643,
+              allowFailure: false,
+              screenshotBucketKey:
+                '2/e2e-tests/acj-mif-h4p/results/5514243239262121697/chrome.laptop_large/step-1.2__1622814306426.jpeg',
+              type: 'click',
+              stepId: 2301409,
+            },
+          ],
+          skipped: false,
+          publicId: '4m7-x72-rx2',
+          description: '[CI] Trial Org Login',
+          url: 'https://app-aedcbe9f6948b970a1e3b90ce530c471.datadoghq.com/account/login?next=%2F',
+          allowFailure: false,
+          duration: 8639,
+          type: 'playSubTest',
+          subTestPublicId: 'cwu-4xc-maj',
+          stepId: 2301796,
+          playingTab: -1,
+        },
+        {
+          browserErrors: [
+            {
+              type: 'js',
+              description: 'DD.ThirdPartyApps: intercom could not identify().',
+              name: 'Console error',
+            },
+            {
+              type: 'js',
+              description:
+                'React-Hot-Loader: misconfiguration detected, using production version in non-production environment.',
+              name: 'Console error',
+            },
+            {
+              type: 'js',
+              description: 'React-Hot-Loader: Hot Module Replacement is not enabled.',
+              name: 'Console error',
+            },
+            {
+              type: 'js',
+              description:
+                'Warning: validateDOMNesting(...): %s cannot appear as a descendant of <%s>.%s, <ul>, p, \n    in ul (created by Text)\n    in Text (created by List)\n    in List (created by Tutorial)\n    in p (created by Text)\n    in Text (created by Paragraph)\n    in Paragraph (created by TutorialStep)\n    in div (created by Flex)\n    in Flex (created by TutorialStep)\n    in TutorialStep (created by Tutorial)\n    in div (created by ProductOverview)\n    in div (created by ProductOverview)\n    in ProductOverview (c',
+              name: 'Console error',
+            },
+          ],
+          vitalsMetrics: [
+            {
+              url: 'https://app-aedcbe9f6948b970a1e3b90ce530c471.datadoghq.com/apm/intro',
+              lcp: 3051.099,
+              cls: 0.026,
+            },
+          ],
+          skipped: false,
+          publicId: 'yfu-ch5-ciy',
+          description: 'Navigate to link',
+          url: 'https://app-aedcbe9f6948b970a1e3b90ce530c471.datadoghq.com/help/quick_start',
+          value: '/apm/intro',
+          duration: 3341,
+          allowFailure: false,
+          screenshotBucketKey:
+            '2/e2e-tests/acj-mif-h4p/results/5514243239262121697/chrome.laptop_large/step-2__1622814306975.jpeg',
+          type: 'goToUrl',
+          stepId: 2302967,
+        },
+        {
+          browserErrors: [],
+          vitalsMetrics: [],
+          skipped: false,
+          publicId: 'a57-py5-vt3',
+          description: 'Wait',
+          url: 'https://app-aedcbe9f6948b970a1e3b90ce530c471.datadoghq.com/apm/intro',
+          value: 3,
+          duration: 3000,
+          allowFailure: false,
+          screenshotBucketKey:
+            '2/e2e-tests/acj-mif-h4p/results/5514243239262121697/chrome.laptop_large/step-3__1622814307760.jpeg',
+          type: 'wait',
+          stepId: 2303114,
+        },
+        {
+          browserErrors: [],
+          vitalsMetrics: [],
+          skipped: false,
+          publicId: 'k4d-h8j-dfu',
+          description: 'Test that trial bar is here',
+          url: 'https://app-aedcbe9f6948b970a1e3b90ce530c471.datadoghq.com/apm/intro',
+          duration: 213,
+          allowFailure: false,
+          screenshotBucketKey:
+            '2/e2e-tests/acj-mif-h4p/results/5514243239262121697/chrome.laptop_large/step-4__1622814308324.jpeg',
+          type: 'assertElementPresent',
+          stepId: 2301797,
+        },
+        {
+          browserErrors: [],
+          vitalsMetrics: [],
+          skipped: true,
+          publicId: 'yz5-4zu-2tf',
+          description: 'Test that zendesk button is here in us office hours',
+          url: 'https://app-aedcbe9f6948b970a1e3b90ce530c471.datadoghq.com/apm/intro',
+          snapshotBucketKey:
+            '2/e2e-tests/acj-mif-h4p/results/5514243239262121697/chrome.laptop_large/step-5__1622814308924.mhtml',
+          duration: 59999,
+          allowFailure: false,
+          error: 'Error: Custom assertion returned a falsy value.',
+          screenshotBucketKey:
+            '2/e2e-tests/acj-mif-h4p/results/5514243239262121697/chrome.laptop_large/step-5__1622814308924.jpeg',
+          type: 'assertFromJavascript',
+          stepId: 2302507,
+        },
+      ],
+      passed: false,
+      error: 'Custom assertion returned a falsy value.',
+      duration: 78193,
+      startUrl: 'https://app-aedcbe9f6948b970a1e3b90ce530c471.datadoghq.com/',
+    },
+    dc_id: 32153,
+    check: {
+      type: 'browser',
+      config: {
+        variables: [],
+        request: {
+          url: 'https://app-aedcbe9f6948b970a1e3b90ce530c471.datadoghq.com/',
+          headers: {},
+          method: 'GET',
+          timeout: 0,
+        },
+        assertions: [],
+      },
+      options: {
+        ci: {
+          executionRule: 'non_blocking',
+        },
+        retry: {
+          count: 0,
+          interval: 300,
+        },
+        min_location_failed: 1,
+        monitor_options: {
+          renotify_interval: 0,
+        },
+        tick_every: 3600,
+        device_ids: ['chrome.laptop_large'],
+        min_failure_duration: 0,
+        ignoreServerCertificateError: true,
+      },
+      subtype: null,
+    },
+  },
+]
+
 RunTestCommand.addPath('synthetics', 'run-tests')
 RunTestCommand.addOption('apiKey', Command.String('--apiKey'))
 RunTestCommand.addOption('appKey', Command.String('--appKey'))
