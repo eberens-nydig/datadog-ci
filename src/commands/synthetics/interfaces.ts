@@ -59,6 +59,12 @@ interface Resource {
   url: string
 }
 
+export interface Vitals {
+  url: string
+  lcp: number
+  cls: number
+}
+
 export interface Step {
   allowFailure: boolean
   apmTraceIds: string[]
@@ -80,11 +86,7 @@ export interface Step {
   type: string
   url: string
   value: string
-  vitalsMetrics: {
-    url: string
-    lcp: number
-    cls: number
-  }[]
+  vitalsMetrics: Vitals[]
   warnings: {
     message: string
     type: string
