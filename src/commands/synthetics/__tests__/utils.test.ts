@@ -332,18 +332,21 @@ describe('utils', () => {
       eventType: 'finished',
       passed: true,
       stepDetails: [],
+      timestamp: 0,
     }
     const passingPollResult = {
       check: testConfiguration,
       dc_id: 42,
       result: passingResult,
       resultID: '0123456789',
+      timestamp: 0,
     }
     const failingPollResult = {
       check: testConfiguration,
       dc_id: 42,
       result: {...passingResult, passed: false},
       resultID: '0123456789',
+      timestamp: 0,
     }
     expect(utils.hasTestSucceeded([passingPollResult, failingPollResult])).toBeFalsy()
     expect(utils.hasTestSucceeded([passingPollResult, passingPollResult])).toBeTruthy()
@@ -382,6 +385,7 @@ describe('utils', () => {
       dc_id: 42,
       result: passingResult,
       resultID,
+      timestamp: 0,
     })
     const triggerResult = {
       device: 'laptop_large',
@@ -417,6 +421,7 @@ describe('utils', () => {
             stepDetails: [],
             tunnel: false,
           },
+          timestamp: 0,
           resultID: triggerResult.result_id,
         },
       ]
@@ -436,6 +441,7 @@ describe('utils', () => {
             stepDetails: [],
             tunnel: false,
           },
+          timestamp: 0,
           resultID: triggerResult.result_id,
         },
       ]
@@ -469,6 +475,7 @@ describe('utils', () => {
             stepDetails: [],
             tunnel: false,
           },
+          timestamp: 0,
           resultID: triggerResultTimeOut.result_id,
         },
       ]

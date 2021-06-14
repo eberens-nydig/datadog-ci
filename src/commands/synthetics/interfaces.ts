@@ -49,6 +49,7 @@ export interface PollResult {
   dc_id: number
   result: Result
   resultID: string
+  timestamp: number
 }
 
 interface Resource {
@@ -75,6 +76,7 @@ export interface Step {
   snapshotBucketKey: boolean
   stepId: number
   subTestStepDetails: Step[]
+  subTestPublicId: string
   type: string
   url: string
   value: string
@@ -82,7 +84,7 @@ export interface Step {
     url: string
     lcp: number
     cls: number
-  }
+  }[]
   warnings: {
     message: string
     type: string
