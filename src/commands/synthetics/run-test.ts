@@ -20,6 +20,8 @@ import {Tunnel} from './tunnel'
 import {getReporter, getSuites, getTestsToTrigger, hasTestSucceeded, runTests, waitForResults} from './utils'
 
 export class RunTestCommand extends Command {
+  public jUnitReport?: string
+  public runName?: string
   private apiKey?: string
   private appKey?: string
   private config = {
@@ -35,10 +37,8 @@ export class RunTestCommand extends Command {
   }
   private configPath?: string
   private fileGlobs?: string[]
-  public jUnitReport?: string
   private publicIds: string[] = []
   private reporter?: MainReporter
-  public runName?: string
   private shouldOpenTunnel?: boolean
   private testSearchQuery?: string
 
@@ -212,14 +212,15 @@ export class RunTestCommand extends Command {
       .filter((suite) => !!suite.content.tests)
 
     const testsToTrigger = suites
-      .map((suite) => {
-        return suite.content.tests.map((test) => ({
-          suite: suite.name,
+      .map((suite) =>
+        suite.content.tests.map((test) => ({
           config: {...this.config!.global, ...test.config},
           id: test.id,
+          suite: suite.name,
         }))
-      })
+      )
       .reduce((acc, suiteTests) => acc.concat(suiteTests), [])
+
     return testsToTrigger
   }
 

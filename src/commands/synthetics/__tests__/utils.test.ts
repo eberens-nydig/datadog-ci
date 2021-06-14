@@ -394,9 +394,9 @@ describe('utils', () => {
       result_id: '0123456789',
     }
     const triggerConfig = {
-      suite: 'Suite 1',
       config: {},
       id: publicId,
+      suite: 'Suite 1',
     }
 
     test('should poll result ids', async () => {
@@ -421,8 +421,8 @@ describe('utils', () => {
             stepDetails: [],
             tunnel: false,
           },
-          timestamp: 0,
           resultID: triggerResult.result_id,
+          timestamp: 0,
         },
       ]
       expect(await utils.waitForResults(api, [triggerResult], 0, [])).toEqual(expectedResults)
@@ -441,14 +441,14 @@ describe('utils', () => {
             stepDetails: [],
             tunnel: false,
           },
-          timestamp: 0,
           resultID: triggerResult.result_id,
+          timestamp: 0,
         },
       ]
       const testTriggerConfig = {
-        suite: 'Suite 1',
         config: {pollingTimeout: 0},
         id: publicId,
+        suite: 'Suite 1',
       }
       expect(await utils.waitForResults(api, [triggerResult], 120000, [testTriggerConfig])).toEqual(expectedResults)
     })
@@ -475,8 +475,8 @@ describe('utils', () => {
             stepDetails: [],
             tunnel: false,
           },
-          timestamp: 0,
           resultID: triggerResultTimeOut.result_id,
+          timestamp: 0,
         },
       ]
       expect(await utils.waitForResults(api, [triggerResultPass, triggerResultTimeOut], 2000, [])).toEqual(
