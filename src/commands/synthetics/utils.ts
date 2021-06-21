@@ -367,8 +367,8 @@ export const getTestsToTrigger = async (api: APIHelper, triggerConfigs: TriggerC
       id = PUBLIC_ID_REGEX.test(id) ? id : id.substr(id.lastIndexOf('/') + 1)
       try {
         test = {
-          suite,
           ...(await api.getTest(id)),
+          suite,
         }
       } catch (e) {
         summary.notFound++

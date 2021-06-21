@@ -26,9 +26,9 @@ export type Reporter = Partial<MainReporter>
 
 export interface Result {
   device: {
-    height?: number
+    height: number
     id: string
-    width?: number
+    width: number
   }
   duration?: number
   error?: string
@@ -60,8 +60,8 @@ interface Resource {
 }
 
 export interface Vitals {
-  cls: number
-  lcp: number
+  cls?: number
+  lcp?: number
   url: string
 }
 
