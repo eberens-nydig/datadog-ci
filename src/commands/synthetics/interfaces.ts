@@ -52,13 +52,6 @@ export interface PollResult {
   timestamp: number
 }
 
-interface Resource {
-  duration: number
-  size: number
-  type: string
-  url: string
-}
-
 export interface Vitals {
   cls?: number
   lcp?: number
